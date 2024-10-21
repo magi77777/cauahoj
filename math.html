@@ -40,12 +40,15 @@
             border-left: 5px solid #007bff;
         }
     </style>
+    <!-- Přidání knihovny math.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.min.js"></script>
 </head>
 <body>
 
 <div class="container">
     <h1>Výpočet podmínek lomených výrazů</h1>
-    <p>Zadejte jmenovatel lomeného výrazu (např. x^2 - 4x):</p>
+    <p>Zadejte čitatel a jmenovatel lomeného výrazu:</p>
+    <input type="text" id="numerator" placeholder="Zadejte čitatel">
     <input type="text" id="denominator" placeholder="Zadejte jmenovatel">
     <button onclick="calculateConditions()">Vypočítat podmínky</button>
     <div class="result" id="result"></div>
@@ -53,30 +56,38 @@
 
 <script>
     function calculateConditions() {
+        const numerator = document.getElementById('numerator').value;
         const denominator = document.getElementById('denominator').value;
         let result = '';
 
         try {
-            // Najít podmínky - jmenovatel nesmí být roven nule
+            // Zjistit podmínky pro lomený výraz
             const conditions = solveConditions(denominator);
-            result = `Podmínky: ${conditions}`;
+            result = `
+                <p>Čitatel: ${numerator}</p>
+                <p>Jmenovatel: ${denominator}</p>
+                <p>Podmínky: ${conditions}</p>
+            `;
         } catch (error) {
-            result = 'Chyba při výpočtu podmínek. Ujistěte se, že zadáváte platný jmenovatel.';
+            result = 'Chyba při výpočtu podmínek. Ujistěte se, že zadáváte platné výrazy.';
         }
 
         document.getElementById('result').innerHTML = result;
     }
 
-    // Funkce pro nalezení podmínek
+    // Funkce pro nalezení podmínek (kdy jmenovatel nesmí být nulový)
     function solveConditions(expression) {
-        // Předpokládáme, že se jedná o jednoduchý výraz (např. x^2 - 4x)
-        // V reálné aplikaci by bylo potřeba použit knihovnu jako math.js pro algebraické výpočty
-        // Zde uděláme jednoduchý příklad
-
-        if (expression.includes('x')) {
-            return 'x ≠ 0 (příklad)';
-        } else {
-            throw new Error('Neplatný výraz');
+        try {
+            // Vyřešit rovnici jmenovatel = 0
+            const solution = math.solve(expression + ' = 0', 'x');
+            
+            if (solution.length === 0) {
+                return 'Jmenovatel nikdy není roven nule (žádné podmínky).';
+            } else {
+                return `x nesmí být rovno: ${solution.join(', ')}`;
+            }
+        } catch (error) {
+            throw new Error('Chyba při řešení výrazu');
         }
     }
 </script>
