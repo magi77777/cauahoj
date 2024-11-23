@@ -6,7 +6,6 @@
   --green: #50fa7b;
   --orange: #ffb86c;
   --purple: #bd93f9;
-  --music: #2d2f3b;
 }
 
 html, body {
@@ -22,49 +21,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Change this from space-between to flex-start */
-  height: 100vh; /* Full viewport height */
-  margin: 0;
-  overflow: hidden;
-}
-
-.header {
-  position: absolute;
-  top: 20px;
-  display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 0 20px;
-}
-
-.button {
-  color: var(--cyan); /* Bright cyan text color to match the Dracula theme */
-  font-size: inherit; /* Inherit the font size from surrounding text */
-  text-decoration: none; /* Remove underline */
-  margin: 0; /* Remove any margin */
-  padding: 0; /* Remove padding */
-  display: inline; /* Make sure the link is inline with the text */
-  transition: color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
-  border-bottom: 2px solid transparent; /* Add a subtle border for hover effect */
-}
-
-.button:hover {
-  color: var(--green); /* Change color to green when hovered */
-  border-bottom: 2px solid var(--green); /* Highlight with a green border on hover */
-}
-
-.button:focus {
-  outline: none; /* Remove focus outline */
+  height: 100vh; /* Full viewport height */
+  padding: 0 10px; /* Add padding for better mobile appearance */
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align content to the top */
+  justify-content: center;
   text-align: center;
   flex-grow: 1; /* Ensure the main content takes up all available space */
-  padding-top: 50px; /* Adjust this value to move content up or down */
 }
 
 /* Targeting the typing effect element */
@@ -74,6 +42,10 @@ body {
   overflow: hidden;
   display: inline-block;
   position: relative;
+  min-width: 300px; /* Pevná šířka pro stabilitu */
+  height: 1.5em; /* Pevná výška */
+  line-height: 1.5em; /* Pro lepší zarovnání */
+  margin: 10px 0; /* Mezery mezi textem */
 }
 
 #typingText::after {
@@ -104,60 +76,73 @@ footer {
   bottom: 10px;
 }
 
-/* Music player card */
-.music-player {
-  background-color: var(--music);
-  color: var(--foreground);
-  border-radius: 15px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 350px;
-  margin-top: 0; /* Zruší výchozí margin */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  position: absolute; /* Absolutní pozicování uvnitř rodiče */
-  top: 76%; /* Posune přehrávač na 50 % výšky */
-  left: 50%; /* Posune přehrávač na střed šířky */
-  transform: translate(-50%, -50%); /* Posune přehrávač přesně na střed */
+.button {
+  color: var(--cyan); /* Bright cyan text color to match the Dracula theme */
+  font-size: inherit; /* Inherit the font size from surrounding text */
+  text-decoration: none; /* Remove underline */
+  margin: 0; /* Remove any margin */
+  padding: 0; /* Remove padding */
+  display: inline; /* Make sure the link is inline with the text */
+  transition: color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+  border-bottom: 2px solid transparent; /* Add a subtle border for hover effect */
 }
 
-.album-art {
-  height: 60px;
-  width: 60px;
-  border-radius: 10px;
-  margin-right: 10px;
+.button:hover {
+  color: var(--green); /* Change color to green when hovered */
+  border-bottom: 2px solid var(--green); /* Highlight with a green border on hover */
 }
 
-.music-info {
-  flex-grow: 1;
-  text-align: left;
-  margin-right: 10px;
+.button:focus {
+  outline: none; /* Remove focus outline */
 }
 
-.track-title {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 0;
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  body {
+    padding: 20px; /* Add padding on smaller devices */
+  }
+
+  #typingText {
+    font-size: 1rem; /* Reduce font size for mobile */
+    min-width: 200px; /* Adjust width */
+  }
+
+  footer {
+    font-size: 0.7rem; /* Adjust footer text size for mobile */
+  }
+
+  .container {
+    padding: 10px; /* Add padding to the container for mobile */
+  }
+
+  h3 {
+    font-size: 1.1rem; /* Adjust header size for smaller screens */
+  }
+
+  p {
+    font-size: 0.9rem; /* Adjust paragraph size for smaller screens */
+  }
+
+  .button {
+    font-size: 1rem; /* Adjust button text size */
+  }
 }
 
-.artist-name {
-  font-size: 0.8rem;
-  margin: 0;
-  color: var(--cyan);
-}
+@media (max-width: 480px) {
+  #typingText {
+    font-size: 0.9rem; /* Smaller font size for very small devices */
+    min-width: 150px; /* Adjust width even further */
+  }
 
-.controls button {
-  background: none;
-  border: none;
-  color: var(--foreground);
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin: 0 5px;
-  transition: transform 0.2s ease;
-}
+  .container {
+    padding: 5px; /* Less padding on very small devices */
+  }
 
-.controls button:hover {
-  transform: scale(1.2);
-}
+  footer {
+    font-size: 0.6rem; /* Smaller footer text for small devices */
+  }
 
+  .button {
+    font-size: 0.9rem; /* Slightly smaller button text */
+  }
+}
