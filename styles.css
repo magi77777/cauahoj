@@ -146,3 +146,12 @@ footer {
     font-size: 0.9rem; /* Slightly smaller button text */
   }
 }
+
+/* Music Player Styling */
+#backgroundMusic {
+  position: fixed; /* Fix it to the bottom */
+  bottom: 20px;    /* Place it 20px from the bottom of the screen */
+  left: 50%;       /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust for proper centering */
+  z-index: 1000;   /* Ensure it stays on top of other content */
+}
