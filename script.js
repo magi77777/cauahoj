@@ -1,7 +1,6 @@
 // Check if the element exists on the page
 const typingElement = document.getElementById("typingText");
 const musicElement = document.getElementById("backgroundMusic"); // Audio element
-const playPauseButton = document.getElementById("playPauseButton");
 
 if (typingElement) {
   // Texts in various programming languages
@@ -19,40 +18,36 @@ if (typingElement) {
   const typingSpeed = 100; // Speed of typing in ms
   const pauseBetweenTexts = 1000; // Pause between texts in ms
 
+  // Function for typing text
   function type() {
     const currentText = texts[textIndex]; // Get the current text to type
+
+    // Update the displayed text
     typingElement.textContent = currentText.slice(0, charIndex);
 
+    // Check if typing has finished
     if (charIndex < currentText.length) {
-      charIndex++;
-      setTimeout(type, typingSpeed);
+      charIndex++; // Move to the next character
+      setTimeout(type, typingSpeed); // Continue typing
     } else {
+      // Wait after finishing typing the current text before starting the next one
       setTimeout(() => {
-        charIndex = 0;
-        textIndex = (textIndex + 1) % texts.length;
-        type();
+        charIndex = 0; // Reset character index
+        textIndex = (textIndex + 1) % texts.length; // Move to the next text (loop back to the first one)
+        type(); // Restart typing
       }, pauseBetweenTexts);
     }
   }
 
+  // Start the typing effect when the page loads
   document.addEventListener("DOMContentLoaded", () => {
     type();
 
+    // Play music automatically (note: some browsers might block autoplay)
     if (musicElement) {
-      musicElement.play().catch((err) => {
+      musicElement.play().catch(err => {
         console.warn("Autoplay was blocked:", err);
       });
     }
   });
 }
-
-// Play/Pause functionality for the music player
-playPauseButton.addEventListener("click", () => {
-  if (musicElement.paused) {
-    musicElement.play();
-    playPauseButton.textContent = "⏸️"; // Change icon to pause
-  } else {
-    musicElement.pause();
-    playPauseButton.textContent = "▶️"; // Change icon to play
-  }
-});
