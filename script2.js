@@ -72,7 +72,7 @@ for (let i = 0; i < 100; i++) {
 
 animateSnow();
 
-const audio = document.getElementById('backgroundMusic');
+const audio = document.getElementById('backgroundMusic').volume = 0.5;
 
 // Play music after user interaction
 function playMusic() {
