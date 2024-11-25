@@ -72,7 +72,11 @@ for (let i = 0; i < 100; i++) {
 
 animateSnow();
 
-const audio = document.getElementById('backgroundMusic').volume = 0.5;
+// Get the audio element
+const audio = document.getElementById('backgroundMusic');
+
+// Set the volume
+audio.volume = 0.5;
 
 // Play music after user interaction
 function playMusic() {
@@ -81,7 +85,7 @@ function playMusic() {
   });
 }
 
-// Add an event listener for user interaction
+// Add an event listener for user interaction (e.g., a click)
 document.addEventListener('click', playMusic, { once: true });
 
 // Optionally log a message for debugging
