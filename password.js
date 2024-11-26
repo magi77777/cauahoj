@@ -21,8 +21,8 @@ function generatePassword() {
 function copyPassword() {
     const passwordText = document.getElementById('password').textContent;
     navigator.clipboard.writeText(passwordText).then(() => {
-        alert('Heslo zkopírováno!');
+        alert('Password copied!');
     }).catch(err => {
-        alert('Chyba při kopírování hesla: ' + err);
+        alert('Error:' + err);
     });
 }
