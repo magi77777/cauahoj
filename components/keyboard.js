@@ -54,47 +54,39 @@ app.component('typing-keyboard', {
         // Methods Here
     },
     mounted(){
-        document.addEventListener("keyup",function(event){
-            let clicked_key = event.key 
-            var allKeys = document.querySelectorAll("dt")
-            var clickSpace = (clicked_key == " ")
+        document.addEventListener("keyup", function(event) {
+            let clicked_key = event.key;
+            var allKeys = document.querySelectorAll("dt");
+            var clickSpace = (clicked_key == " ");
 
-            allKeys.forEach(function(key){
-                if (clickSpace){
+            allKeys.forEach(function(key) {
+                // Reset styling for all keys
+                key.style.transition = "ease .3s";
+                key.style.backgroundColor = "transparent";
+                key.style.border = "1px solid #6272a4"; // Soft blue for default border
+                key.style.color = "#f8f8f2"; // Light text color
+                key.style.boxShadow = "none";
+            });
 
-                    allKeys.forEach(function(key){
-                        key.style.transition = "ease .3s"
-                        key.style.backgroundColor = "transparent";
-                        key.style.border = "1px solid rgb(134, 134, 134)";
-                        key.style.color = "rgb(134, 134, 134)";
-                        key.style.boxShadow = "none";
-                    })
-
-
-                    var spaceButton = document.querySelector("dt#space-button")
-                    spaceButton.style.transition = "ease .3s"
-                    spaceButton.style.backgroundColor = "#e1b000";
-                    spaceButton.style.border = "1px solid #e1b000";
-                    spaceButton.style.boxShadow = "rgb(226 181 20 / 8%) 0px 6px 33px";
-                }
-
-
-                else if (clicked_key == key.innerHTML){
-                    key.style.transition = "ease .3s"
-                    key.style.backgroundColor = "#e1b000";
-                    key.style.border = "1px solid #e1b000";
-                    key.style.color = "black";
-                    key.style.boxShadow = "rgb(226 181 20 / 8%) 0px 6px 33px";
-                }
-                else if (clicked_key != key.innerHTML){
-                    key.style.transition = "ease .3s"
-                    key.style.backgroundColor = "transparent";
-                    key.style.border = "1px solid rgb(134, 134, 134)";
-                    key.style.color = "rgb(134, 134, 134)";
-                    key.style.boxShadow = "none";
-                }
-            })
-        })
-
+            if (clickSpace) {
+                // Special styling for spacebar
+                var spaceButton = document.querySelector("dt#space-button");
+                spaceButton.style.transition = "ease .3s";
+                spaceButton.style.backgroundColor = "#50fa7b"; // Green color for spacebar
+                spaceButton.style.border = "1px solid #50fa7b";
+                spaceButton.style.boxShadow = "rgb(80 250 123 / 15%) 0px 6px 33px"; // Green glow effect
+            } else {
+                allKeys.forEach(function(key) {
+                    if (clicked_key == key.innerHTML) {
+                        // Styling for the pressed key
+                        key.style.transition = "ease .3s";
+                        key.style.backgroundColor = "#ff79c6"; // Pink for pressed key
+                        key.style.border = "1px solid #ff79c6"; // Pink border
+                        key.style.color = "#282a36"; // Dark text color for contrast
+                        key.style.boxShadow = "rgb(255 121 198 / 15%) 0px 6px 33px"; // Pink glow effect
+                    }
+                });
+            }
+        });
     }
 });

@@ -1,30 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
-
-
-ul.keyboard{
-    /* border: 1px solid red; */
+ul.keyboard {
     width: 400px;
     width: max-content;
     margin: 0 auto;
-    font-family: 'Roboto Mono', monospace;;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #282a36; /* Dark background */
+    color: #f8f8f2; /* Light text color */
+    padding: 15px;
+    border-radius: 10px;
 }
 
-
-ul.keyboard li{
-    /* border: 1px solid  red; */
+ul.keyboard li {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 6px;
 }
 
-
-ul.keyboard li dt{
-    border: 1px solid rgb(134, 134, 134); 
-    color: rgb(134, 134, 134);
+ul.keyboard li dt {
+    border: 1px solid #6272a4; /* Soft blue border */
+    color: #f8f8f2; /* Light text color */
+    background-color: #44475a; /* Darker background for each key */
     padding: 1em;
-    /* border-radius: 50%; */
     border-radius: 7px;
     width: 45px;
     height: 45px;
@@ -32,53 +30,53 @@ ul.keyboard li dt{
     justify-content: center;
     align-items: center;
     margin: 0 5px;
+    transition: all 0.2s ease;
 }
 
+ul.keyboard li dt:hover {
+    background-color: #ff79c6; /* Pink color on hover */
+    color: #282a36; /* Dark background on text hover */
+}
 
-dt#space-button{
-    border: 1px solid #8c8c8c;
+dt#space-button {
+    border: 1px solid #ff79c6; /* Pink border */
     width: 300px;
     margin: 0 auto;
     margin-top: 10px;
     border-radius: 4px;
+    background-color: #44475a; /* Dark background for spacebar */
+    color: #f8f8f2; /* Light text color */
 }
 
-dt#space-button h3{
+dt#space-button h3 {
     font-size: 13px;
     opacity: 0;
 }
 
-
-/* dt.activeKey{
-    background-color: #727272;
-    color: white !important;
-} */
-
-
-
+/* Active key style */
+dt.activeKey {
+    background-color: #50fa7b; /* Green for active key */
+    color: #282a36; /* Dark text for contrast */
+}
 
 /* ------------------ Media Query ------------------- */
 
-
-
-@media (max-width:1200px) {
-    ul.keyboard{
-        /* border: 1px solid red; */
+@media (max-width: 1200px) {
+    ul.keyboard {
         width: 400px;
         width: max-content;
         margin: 0 auto;
-        font-family: 'Roboto Mono', monospace;;
+        font-family: 'Roboto Mono', monospace;
         margin-top: 30px;
     }
-    ul.keyboard li dt{
-        border-radius: 7px;
+    ul.keyboard li dt {
         width: 40px;
         height: 40px;
     }
 }
 
 @media (max-width: 790px) {
-    ul.keyboard{
+    ul.keyboard {
         display: none;
     }
 }
