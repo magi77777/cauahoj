@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coder Portfolio</title>
+    <style>
+        :root {
+            --nord0: #2E3440;
+            --nord1: #3B4252;
+            --nord2: #434C5E;
+            --nord3: #4C566A;
+            --nord4: #D8DEE9;
+            --nord5: #E5E9F0;
+            --nord6: #ECEFF4;
+            --nord7: #8FBCBB;
+            --nord8: #88C0D0;
+            --nord9: #81A1C1;
+            --nord10: #5E81AC;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--nord0);
+            color: var(--nord4);
+        }
+
+        html {
+            scroll-behavior: auto; /* Zrušení automatického smooth scrollu při načítání */
+        }
+
+        header {
+            background-image: url('https://via.placeholder.com/1200x150');
+            background-size: cover;
+            background-position: center;
+            height: 150px;
+            padding: 0;
+            text-align: center;
+        }
+
+        header h1 {
+            display: none;
+        }
+
+        nav {
+            background-color: var(--nord2);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        nav a {
+            color: var(--nord6);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--nord7);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 1.5rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--nord1);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .project-card-content {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .project-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--nord8);
+        }
+
+        .project-card p {
+            margin: 0.5rem 0;
+            color: var(--nord5);
+        }
+
+        .project-card button {
+            margin-top: 1rem;
+            background-color: var(--nord7);
+            border: none;
+            color: var(--nord0);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .project-card button:hover {
+            background-color: var(--nord8);
+        }
+
+        footer {
+            background-color: var(--nord3);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            color: var(--nord5);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--nord8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--nord7);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .project-card-content {
+                padding: 0.8rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-card p {
+                font-size: 0.9rem;
+            }
+
+            .project-card button {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        #about, #contact {
+            margin-bottom: 3rem;
+        }
+
+        #about h2, #contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--nord8);
+            margin-bottom: 1.5rem;
+        }
+
+        #about .content-wrapper, #contact .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #about img {
+            border-radius: 50%;
+            max-width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #about .bio {
+            max-width: 600px;
+            background-color: var(--nord1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #about .bio p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--nord5);
+        }
+
+        #contact .card {
+            max-width: 600px;
+            background-color: var(--nord1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        #contact .card p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--nord5);
+        }
+
+        #contact .card a {
+            color: var(--nord8);
+            text-decoration: none;
+        }
+
+        #contact button {
+            margin-top: 1.5rem;
+            background-color: var(--nord7);
+            border: none;
+            color: var(--nord0);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #contact button:hover {
+            background-color: var(--nord8);
+        }
+
+        #contact button a {
+            text-decoration: none;
+            color: var(--nord0);
+        }
+
+        #contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #projects h2 {
+            font-size: 2.5rem;
+            color: var(--nord8); 
+            text-align: center; 
+            margin-bottom: 1.5rem; 
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/1200x150" alt="Banner" class="banner-image">
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <section id="about">
+            <h2>Lorem Ipsum Dolor</h2>
+            <div class="content-wrapper">
+                <img src="https://via.placeholder.com/300x300" alt="Profile Picture">
+                <div class="bio">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+                    <p>Nulla nec pretium massa, sit amet hendrerit nisl. Fusce convallis purus at est scelerisque, et volutpat lectus tincidunt.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x150" alt="Project One">
+                    <div class="project-card-content">
+                        <h3>Lorem Ipsum Project</h3>
+                        <p>Vestibulum ac diam sit amet quam vehicula elementum. Fusce viverra velit eu dolor venenatis, non auctor augue suscipit.</p>
+                        <button><a href="https://example.com" style="color: inherit; text-decoration: none;">View Details</a></button>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x150" alt="Project Two">
+                    <div class="project-card-content">
+                        <h3>Another Ipsum Project</h3>
+                        <p>Curabitur non felis et neque ultrices vehicula. Morbi maximus urna at purus sollicitudin, non iaculis ante fermentum.</p>
+                        <button><a href="https://example.com" style="color: inherit; text-decoration: none;">View Details</a></button>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x150" alt="Project Three">
+                    <div class="project-card-content">
+                        <h3>Fusce Project</h3>
+                        <p>Donec vitae magna felis. Sed sit amet tincidunt purus, at eleifend eros. Sed sed orci non ipsum luctus cursus.</p>
+                        <button><a href="https://example.com" style="color: inherit; text-decoration: none;">View Details</a></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="card">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="mailto:your.email@example.com">
+                    <button>Email Me</button>
+                </a>                  
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Designed by <strong>mtj1337</strong>. Powered by the Nord color palette.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
